@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 class ModelTests(TestCase):
 
     def test_create_use_with_email_successful(self):
-        """Test creating a new user with an email is successfull"""
+        """Test creating a new users with an email is successfull"""
         email = 'test@ottawaappdev.com'
         password = 'Testpass123'
         user = get_user_model().objects.create_user(
@@ -17,14 +17,14 @@ class ModelTests(TestCase):
         self.assertTrue(user.check_password(password))
 
     def test_new_user_email_normalized(self):
-        """Test the email for a new user is normalized"""
+        """Test the email for a new users is normalized"""
         email = 'test@OTTAWAAPPDEV.COM'
         user = get_user_model().objects.create_user(email, 'test123')
 
         self.assertEqual(user.email, email.lower())
 
     def test_new_user_invalid_email(self):
-        """test creating user with no email raise error"""
+        """test creating users with no email raise error"""
         # Everything that we pass to this should raise an error
         with self.assertRaises(ValueError):
             get_user_model().objects.create_user(None, 'test123')
